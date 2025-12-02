@@ -1,4 +1,4 @@
-from solution import rotate_series
+from solution import count_zeros, rotate_series
 
 def test_empty_steps_returns_initial_state():
     result = rotate_series([])
@@ -11,3 +11,15 @@ def test_single_step():
 def test_multiple_steps():
     result = rotate_series(["L68", "L30"])
     assert result == [50, 82, 52]
+
+def test_count_no_zeros():
+    result = count_zeros([1, 2, 3])
+    assert result == 0
+
+def test_count_one_zero():
+    result = count_zeros([1, 0, 3])
+    assert result == 1
+
+def test_count_multiple_zeros():
+    result = count_zeros([1, 0, 3, 0, 0, 7, 0])
+    assert result == 4
