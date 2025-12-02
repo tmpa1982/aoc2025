@@ -1,5 +1,6 @@
 from direction import Direction
 from rotate import rotate
+from rotation import Rotation
 
 def test_rotate_right_single():
     result = rotate_right(0, 1)
@@ -42,7 +43,7 @@ def test_rotate_left_overflow():
     assert result == 98
 
 def rotate_right(position: int, size: int):
-    return rotate(position, size, Direction.RIGHT)
+    return rotate(position, Rotation(Direction.RIGHT, size))
 
 def rotate_left(position: int, size: int):
-    return rotate(position, size, Direction.LEFT)
+    return rotate(position, Rotation(Direction.LEFT, size))
