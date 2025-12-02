@@ -12,3 +12,7 @@ def rotate_series(steps: list[str]):
 
 def count_zeros(series: list[int]):
     return sum(1 for item in series if item == 0)
+
+def solve(steps: list[str]):
+    positions = rotate_series(steps)
+    return count_zeros(positions)

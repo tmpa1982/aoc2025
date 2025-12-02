@@ -1,4 +1,4 @@
-from solution import count_zeros, rotate_series
+from solution import count_zeros, rotate_series, solve
 
 def test_empty_steps_returns_initial_state():
     result = rotate_series([])
@@ -23,3 +23,18 @@ def test_count_one_zero():
 def test_count_multiple_zeros():
     result = count_zeros([1, 0, 3, 0, 0, 7, 0])
     assert result == 4
+
+def test_sample_solution():
+    result = solve([
+        "L68",
+        "L30",
+        "R48",
+        "L5",
+        "R60",
+        "L55",
+        "L1",
+        "L99",
+        "R14",
+        "L82",
+    ])
+    assert result == 3
