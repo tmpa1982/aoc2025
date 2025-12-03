@@ -1,7 +1,7 @@
 import pytest
 
 from range import Range
-from range_parsing import count_invalid, parse, split, take_half, trim_bottom, trim_top
+from range_parsing import count_invalid, parse, solve, split, take_half, trim_bottom, trim_top
 
 def test_split_range():
     result = split("11-22,95-115,998-1012")
@@ -98,7 +98,7 @@ def test_take_half():
 def test_empty_range_has_no_invalid():
     range = Range(1698522, 1698528)
     result = count_invalid(range)
-    assert result == 0
+    assert result == []
 
 def test_single_invalid():
     range = Range(446443, 446449)
@@ -109,3 +109,12 @@ def test_multiple_invalid():
     range = Range(11, 22)
     result = count_invalid(range)
     assert result == [11, 22]
+
+def test_998_1012():
+    range = Range(998, 1012)
+    result = count_invalid(range)
+    assert result == [1010]
+
+def test_solve_sample():
+    result = solve("11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124")
+    assert result == 1227775554
