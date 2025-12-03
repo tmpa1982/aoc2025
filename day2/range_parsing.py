@@ -60,6 +60,5 @@ def count_invalid(r: Range):
 
 def solve(s: str):
     ranges = [parse(i) for i in split(s)]
-    print(ranges)
     mapped = list(map(count_invalid, ranges))
     return sum([sum(i) for i in mapped])
