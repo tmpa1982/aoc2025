@@ -1,7 +1,7 @@
 import pytest
 
 from range import Range
-from range_parsing import parse, split, trim_bottom, trim_top
+from range_parsing import parse, split, take_half, trim_bottom, trim_top
 
 def test_split_range():
     result = split("11-22,95-115,998-1012")
@@ -90,3 +90,7 @@ def test_trim_top_83():
 def test_trim_top_small():
     result = trim_top(10)
     assert result == 0
+
+def test_take_half():
+    result = take_half(123123)
+    assert result == 123

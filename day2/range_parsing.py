@@ -40,3 +40,9 @@ def trim_top(n: int):
 
 def prev_invalid(size: int):
     return int("9" * size)
+
+def take_half(n: int):
+    s = str(n)
+    length = len(s)
+    half = length // 2
+    return int(s[:half])
