@@ -1,7 +1,7 @@
 import pytest
 
 from range import Range
-from range_parsing import parse, split, trim_bottom
+from range_parsing import parse, split, trim_bottom, trim_top
 
 def test_split_range():
     result = split("11-22,95-115,998-1012")
@@ -62,3 +62,31 @@ def test_trim_bottom_3534():
 def test_trim_bottom_3536():
     result = trim_bottom(3536)
     assert result == 3636
+
+def test_trim_top_odd():
+    result = trim_top(365)
+    assert result == 99
+
+def test_trim_top_odd_long():
+    result = trim_top(36591)
+    assert result == 9999
+
+def test_trim_top_4567():
+    result = trim_top(4567)
+    assert result == 4545
+
+def test_trim_top_7654():
+    result = trim_top(7654)
+    assert result == 7575
+
+def test_trim_top_7676():
+    result = trim_top(7676)
+    assert result == 7676
+
+def test_trim_top_83():
+    result = trim_top(83)
+    assert result == 77
+
+def test_trim_top_small():
+    result = trim_top(10)
+    assert result == 0
