@@ -103,9 +103,9 @@ def test_empty_range_has_no_invalid():
 def test_single_invalid():
     range = Range(446443, 446449)
     result = count_invalid(range)
-    assert result == 1
+    assert result == [446446]
 
 def test_multiple_invalid():
     range = Range(11, 22)
     result = count_invalid(range)
-    assert result == 2
+    assert result == [11, 22]

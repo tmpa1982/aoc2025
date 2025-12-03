@@ -47,13 +47,13 @@ def take_half(n: int):
     half = length // 2
     return int(s[:half])
 
-def count_invalid(range: Range):
-    bottom = trim_bottom(range.start_num)
-    top = trim_top(range.end_num)
+def count_invalid(r: Range):
+    bottom = trim_bottom(r.start_num)
+    top = trim_top(r.end_num)
     if (top < bottom):
         return 0
 
     bottom = take_half(bottom)
     top = take_half(top)
-
-    return top - bottom + 1
+    
+    return [int((str(i) * 2)) for i in range(bottom, top + 1)]
