@@ -16,3 +16,50 @@ def joltage(s: str):
 
 def solve(arr: list[str]):
     return sum([joltage(s.strip()) for s in arr])
+
+def joltage_high(s: str):
+    length = len(s)
+    if (length < 13):
+        return int(s)
+
+    nums = trim_left_small([int(c) for c in s])
+    num_to_remove = len(nums) - 12
+
+    for _ in range(num_to_remove):
+        i = find_left_min_index(nums)
+        del nums[i]
+    return int("".join(map(str, nums)))
+
+def trim_left_small(nums: list[int]):
+    arr = nums
+    min_size = 12
+    result = []
+    while True:
+        trimmed = trim_left_small_once(arr, min_size)
+        if trimmed is None:
+            return result + arr
+        else:
+            result.append(trimmed[0])
+            arr = trimmed[1:]
+            min_size = min_size - 1
+    return result
+
+def trim_left_small_once(nums: list[int], min_size: int):
+    length = len(nums)
+    for n in range(9, 0, -1):
+        for index, val in enumerate(nums):
+            if val == n and length - index >= min_size:
+                return nums[index:]
+    return None
+
+def find_left_min_index(nums: list[int]):
+    result = 0
+    value = nums[0]
+    for index, val in enumerate(nums):
+        if val < value:
+            value = val
+            result = index
+    return result
+
+def solve2(arr: list[str]):
+    return sum([joltage_high(s.strip()) for s in arr])
