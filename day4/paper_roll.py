@@ -44,3 +44,16 @@ class Board:
                 if (self.is_accessible(c)):
                     result = result + 1
         return result
+
+    def remove_accessible(self):
+        result = []
+        for y in range(len(self.layout)):
+            line = ""
+            for x in range(len(self.layout[y])):
+                c = Coordinate(x, y)
+                if (self.is_accessible(c)):
+                    line = line + EMPTY
+                else:
+                    line = line + self.layout[y][x]
+            result.append(line)
+        return result

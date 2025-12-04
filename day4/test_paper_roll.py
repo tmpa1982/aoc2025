@@ -100,6 +100,35 @@ def test_count_accessible():
     board = Board(layout)
     assert board.count_accessible() == 13
 
+def test_remove_accessible():
+    layout = [
+        "..@@.@@@@.",
+        "@@@.@.@.@@",
+        "@@@@@.@.@@",
+        "@.@@@@..@.",
+        "@@.@@@@.@@",
+        ".@@@@@@@.@",
+        ".@.@.@.@@@",
+        "@.@@@.@@@@",
+        ".@@@@@@@@.",
+        "@.@.@@@.@."
+    ]
+
+    board = Board(layout)
+    new_layout = [
+        ".......@..",
+        ".@@.@.@.@@",
+        "@@@@@...@@",
+        "@.@@@@..@.",
+        ".@.@@@@.@.",
+        ".@@@@@@@.@",
+        ".@.@.@.@@@",
+        "..@@@.@@@@",
+        ".@@@@@@@@.",
+        "....@@@..."
+    ]
+    assert board.remove_accessible() == new_layout
+
 def exec_test_accessible(layout, coordinate):
     board = Board(layout)
     
