@@ -44,7 +44,7 @@ def take_repeating_pattern(n: int, times: int):
     s = str(n)
     return int(s[:len(s) // times])
 
-def count_invalid(r: Range, times: int = 2):
+def count_invalid(r: Range, times):
     bottom = trim_bottom(r.start_num, times)
     top = trim_top(r.end_num, times)
     if (top < bottom):
@@ -55,7 +55,7 @@ def count_invalid(r: Range, times: int = 2):
     
     return [int((str(i) * times)) for i in range(bottom, top + 1)]
 
-def solve(s: str):
+def solve(s: str, times: int = 2):
     ranges = [parse(i) for i in split(s)]
-    mapped = list(map(count_invalid, ranges))
+    mapped = list(map(lambda x: count_invalid(x, times), ranges))
     return sum([sum(i) for i in mapped])

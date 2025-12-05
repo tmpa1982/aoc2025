@@ -129,23 +129,26 @@ def test_take_repeating_pattern_3():
 
 def test_empty_range_has_no_invalid():
     range = Range(1698522, 1698528)
-    result = count_invalid(range)
+    result = count_invalid_2(range)
     assert result == []
 
 def test_single_invalid():
     range = Range(446443, 446449)
-    result = count_invalid(range)
+    result = count_invalid_2(range)
     assert result == [446446]
 
 def test_multiple_invalid():
     range = Range(11, 22)
-    result = count_invalid(range)
+    result = count_invalid_2(range)
     assert result == [11, 22]
 
 def test_998_1012():
     range = Range(998, 1012)
-    result = count_invalid(range)
+    result = count_invalid_2(range)
     assert result == [1010]
+
+def count_invalid_2(range: Range):
+    return count_invalid(range, 2)
 
 def test_solve_sample():
     result = solve("11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124")
