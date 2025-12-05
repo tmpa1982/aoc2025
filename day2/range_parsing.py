@@ -8,23 +8,23 @@ def parse(s: str):
     [first, second] = s.split("-")
     return Range.create(first, second)
 
-def trim_bottom(n: int):
+def trim_bottom(n: int, times: int):
     s = str(n)
     length = len(s)
-    if (length % 2 == 1):
-        return next_invalid(length + 1)
-    half = length // 2
-    first = int(s[:half])
-    second = int(s[half:])
-    power = int(pow(10, half))
+    if length % times != 0:
+        return next_invalid(length // times + 1, times)
+    division_length = length // times
+    first = int(s[:division_length])
+    second = int(s[division_length:2*division_length])
     lead_num = first + 1 if (first < second) else first
-    return lead_num * power + lead_num
+    return repeat(lead_num, times)
 
-def next_invalid(size: int):
-    half = size / 2
-    exp = half - 1
-    power = int(pow(10, exp))
-    return power * (int(pow(10, half)) + 1)
+def next_invalid(size: int, times):
+    power = int(pow(10, size - 1))
+    return repeat(power, times)
+
+def repeat(num: int, times: int):
+    return int(str(num) * times)
 
 def trim_top(n: int):
     s = str(n)
@@ -48,7 +48,7 @@ def take_half(n: int):
     return int(s[:half])
 
 def count_invalid(r: Range):
-    bottom = trim_bottom(r.start_num)
+    bottom = trim_bottom(r.start_num, 2)
     top = trim_top(r.end_num)
     if (top < bottom):
         return []

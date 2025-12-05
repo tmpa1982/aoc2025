@@ -32,36 +32,39 @@ def test_parse_non_numeric_second():
         parse("1-x")
 
 def test_trim_bottom_small():
-    result = trim_bottom(7)
+    result = trim_bottom_2(7)
     assert result == 11
 
 def test_trim_bottom_11():
-    result = trim_bottom(11)
+    result = trim_bottom_2(11)
     assert result == 11
 
 def test_trim_bottom_12():
-    result = trim_bottom(12)
+    result = trim_bottom_2(12)
     assert result == 22
 
 def test_trim_bottom_21():
-    result = trim_bottom(21)
+    result = trim_bottom_2(21)
     assert result == 22
 
 def test_trim_bottom_22():
-    result = trim_bottom(22)
+    result = trim_bottom_2(22)
     assert result == 22
 
 def test_trim_bottom_100():
-    result = trim_bottom(100)
+    result = trim_bottom_2(100)
     assert result == 1010
 
 def test_trim_bottom_3534():
-    result = trim_bottom(3534)
+    result = trim_bottom_2(3534)
     assert result == 3535
 
 def test_trim_bottom_3536():
-    result = trim_bottom(3536)
+    result = trim_bottom_2(3536)
     assert result == 3636
+
+def trim_bottom_2(n: int):
+    return trim_bottom(n, 2)
 
 def test_trim_top_odd():
     result = trim_top(365)
