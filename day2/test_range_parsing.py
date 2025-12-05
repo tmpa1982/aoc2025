@@ -66,6 +66,17 @@ def test_trim_bottom_3536():
 def trim_bottom_2(n: int):
     return trim_bottom(n, 2)
 
+def test_trim_bottom_3_6():
+    result = trim_bottom_3(6)
+    assert result == 111
+
+def test_trim_bottom_3():
+    result = trim_bottom_3(120089)
+    assert result == 121212
+
+def trim_bottom_3(n: int):
+    return trim_bottom(n, 3)
+
 def test_trim_top_odd():
     result = trim_top_2(365)
     assert result == 99
@@ -97,9 +108,24 @@ def test_trim_top_small():
 def trim_top_2(n: int):
     return trim_top(n, 2)
 
+def test_trim_top_3_1234567():
+    result = trim_top_3(1234567)
+    assert result == 999999
+
+def test_trim_top_3_123456789():
+    result = trim_top_3(123456789)
+    assert result == 123123123
+
+def trim_top_3(n: int):
+    return trim_top(n, 3)
+
 def test_take_repeating_pattern():
     result = take_repeating_pattern(123123, 2)
     assert result == 123
+
+def test_take_repeating_pattern_3():
+    result = take_repeating_pattern(420420420, 3)
+    assert result == 420
 
 def test_empty_range_has_no_invalid():
     range = Range(1698522, 1698528)
