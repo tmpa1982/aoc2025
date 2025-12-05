@@ -40,22 +40,20 @@ def trim_top(n: int, times: int):
 def prev_invalid(size: int):
     return int("9" * size)
 
-def take_half(n: int):
+def take_repeating_pattern(n: int, times: int):
     s = str(n)
-    length = len(s)
-    half = length // 2
-    return int(s[:half])
+    return int(s[:len(s) // times])
 
-def count_invalid(r: Range):
-    bottom = trim_bottom(r.start_num, 2)
-    top = trim_top(r.end_num, 2)
+def count_invalid(r: Range, times: int = 2):
+    bottom = trim_bottom(r.start_num, times)
+    top = trim_top(r.end_num, times)
     if (top < bottom):
         return []
 
-    bottom = take_half(bottom)
-    top = take_half(top)
+    bottom = take_repeating_pattern(bottom, times)
+    top = take_repeating_pattern(top, times)
     
-    return [int((str(i) * 2)) for i in range(bottom, top + 1)]
+    return [int((str(i) * times)) for i in range(bottom, top + 1)]
 
 def solve(s: str):
     ranges = [parse(i) for i in split(s)]
