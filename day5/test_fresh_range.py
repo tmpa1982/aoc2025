@@ -1,3 +1,4 @@
+import pytest
 from fresh_range import FreshRange, count_fresh, count_spoiled, parse_input, parse_range, solve, solve2
 
 
@@ -104,3 +105,54 @@ def test_count_fresh_sample():
 
     result = solve2(input)
     assert result == 14
+
+def test_overlap_other_start():
+    range = FreshRange(3, 5)
+    other = FreshRange(4, 6)
+
+    assert range.has_overlap(other) == True
+    assert other.has_overlap(range) == True
+
+def test_overlap_other_end():
+    range = FreshRange(3, 5)
+    other = FreshRange(2, 4)
+
+    assert range.has_overlap(other) == True
+    assert other.has_overlap(range) == True
+
+def test_overlap_edge():
+    range = FreshRange(3, 5)
+    other = FreshRange(5, 7)
+
+    assert range.has_overlap(other) == True
+    assert other.has_overlap(range) == True
+
+def test_no_overlap():
+    range = FreshRange(3, 5)
+    other = FreshRange(6, 7)
+
+    assert range.has_overlap(other) == False
+    assert other.has_overlap(range) == False
+
+def test_merge_right():
+    range = FreshRange(3, 5)
+    other = FreshRange(4, 6)
+
+    result = range.assemble(other)
+
+    assert result == FreshRange(3, 6)
+
+def test_merge_left():
+    range = FreshRange(3, 5)
+    other = FreshRange(2, 4)
+
+    result = range.assemble(other)
+
+    assert result == FreshRange(2, 5)
+
+def test_no_merge():
+    range = FreshRange(3, 5)
+    other = FreshRange(7, 9)
+
+    with pytest.raises(ValueError):
+        range.assemble(other)
