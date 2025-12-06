@@ -44,3 +44,14 @@ def find_separator_index(lines: list[str]):
 def solve(lines: list[str]):
     (ranges, ingredients) = parse_input(lines)
     return count_spoiled(ranges, ingredients)
+
+def count_fresh(ranges: list[FreshRange]):
+    ingredients = set()
+    for fresh_range in ranges:
+        for ingredient in range(fresh_range.start, fresh_range.end + 1):
+            ingredients.add(ingredient)
+    return len(ingredients)
+
+def solve2(lines: list[str]):
+    (ranges, _) = parse_input(lines)
+    return count_fresh(ranges)

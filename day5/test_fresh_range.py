@@ -1,4 +1,4 @@
-from fresh_range import FreshRange, count_spoiled, parse_input, parse_range, solve
+from fresh_range import FreshRange, count_fresh, count_spoiled, parse_input, parse_range, solve, solve2
 
 
 def test_in_range():
@@ -74,3 +74,33 @@ def test_sample_solution():
 
     result = solve(input)
     assert result == 3
+
+def test_count_fresh_ingredients():
+    result = count_fresh([FreshRange(3, 5)])
+    assert result == 3
+
+def test_count_fresh_ingredients_multiple_ranges():
+    result = count_fresh([FreshRange(3, 5), FreshRange(8, 9)])
+    assert result == 5
+
+def test_count_fresh_ingredients_overlapping_ranges():
+    result = count_fresh([FreshRange(3, 5), FreshRange(4, 6)])
+    assert result == 4
+
+def test_count_fresh_sample():
+    input = [
+        "3-5",
+        "10-14",
+        "16-20",
+        "12-18",
+        "",
+        "1",
+        "5",
+        "8",
+        "11",
+        "17",
+        "32",
+    ]
+
+    result = solve2(input)
+    assert result == 14
