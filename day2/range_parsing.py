@@ -14,9 +14,11 @@ def trim_bottom(n: int, times: int):
     if length % times != 0:
         return next_invalid(length // times + 1, times)
     division_length = length // times
-    first = int(s[:division_length])
-    second = int(s[division_length:2*division_length])
-    lead_num = first + 1 if (first < second) else first
+    first_num = int(s[:division_length] * times)
+    if first_num >= n:
+        return first_num
+
+    lead_num = int(s[:division_length]) + 1
     return repeat(lead_num, times)
 
 def next_invalid(size: int, times):
@@ -32,13 +34,15 @@ def trim_top(n: int, times: int):
     if (length % times != 0):
         return prev_invalid((length // times) * times)
     division_length = length // times
-    first = int(s[:division_length])
-    second = int(s[division_length:2*division_length])
-    lead_num = first - 1 if (first > second) else first
+    first_num = int(s[:division_length] * times)
+    if first_num <= n:
+        return first_num
+
+    lead_num = int(s[:division_length]) - 1
     return repeat(lead_num, times)
 
 def prev_invalid(size: int):
-    return int("9" * size)
+    return int("9" * size) if size else 0
 
 def take_repeating_pattern(n: int, times: int):
     s = str(n)
@@ -53,9 +57,31 @@ def count_invalid(r: Range, times):
     bottom = take_repeating_pattern(bottom, times)
     top = take_repeating_pattern(top, times)
     
-    return [int((str(i) * times)) for i in range(bottom, top + 1)]
+    result = [int((str(i) * times)) for i in range(bottom, top + 1)]
+    return result
 
 def solve(s: str, times: int = 2):
+    mapped = get_invalid_numbers(s, times)
+    return sum(mapped)
+
+def get_invalid_numbers(s: str, times: int):
     ranges = [parse(i) for i in split(s)]
     mapped = list(map(lambda x: count_invalid(x, times), ranges))
-    return sum([sum(i) for i in mapped])
+    return [item for sublist in mapped for item in sublist]
+
+def solve_generic(s: str):
+    invalid_numbers = set()
+    for range in split(s):
+        invalids = solve_generic_for_range(range)
+        for invalid in invalids:
+            invalid_numbers.add(invalid)
+    return sum(invalid_numbers)
+
+def solve_generic_for_range(s: str):
+    max_len = len(s.split("-")[1])
+    invalid_numbers = set()
+    for times in range(2, max_len + 1):
+        invalids = get_invalid_numbers(s, times)
+        for invalid in invalids:
+            invalid_numbers.add(invalid)
+    return invalid_numbers

@@ -1,7 +1,7 @@
 import pytest
 
 from range import Range
-from range_parsing import count_invalid, parse, solve, split, take_repeating_pattern, trim_bottom, trim_top
+from range_parsing import count_invalid, parse, solve, solve_generic, split, take_repeating_pattern, trim_bottom, trim_top
 
 def test_split_range():
     result = split("11-22,95-115,998-1012")
@@ -77,6 +77,10 @@ def test_trim_bottom_3():
 def trim_bottom_3(n: int):
     return trim_bottom(n, 3)
 
+def test_trim_bottom_6():
+    result = trim_bottom(446443, 6)
+    assert result == 555555
+
 def test_trim_top_odd():
     result = trim_top_2(365)
     assert result == 99
@@ -119,6 +123,10 @@ def test_trim_top_3_123456789():
 def trim_top_3(n: int):
     return trim_top(n, 3)
 
+def test_trim_top_1102():
+    result = trim_top(1102, 4)
+    assert result == 0
+
 def test_take_repeating_pattern():
     result = take_repeating_pattern(123123, 2)
     assert result == 123
@@ -153,3 +161,7 @@ def count_invalid_2(range: Range):
 def test_solve_sample():
     result = solve("11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124")
     assert result == 1227775554
+
+def test_solve_sample_generic():
+    result = solve_generic("11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124")
+    assert result == 4174379265
