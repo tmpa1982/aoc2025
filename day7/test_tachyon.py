@@ -1,5 +1,5 @@
 from step_result import StepResult
-from tachyon import count_total_split, evaluate
+from tachyon import count_total_paths, count_total_split, evaluate
 
 
 def test_step():
@@ -76,3 +76,74 @@ def test_sample():
     
     result = count_total_split(input)
     assert result == 21
+
+def test_count_total_paths():
+    input = [
+        "..S..",
+        "..^..",
+        ".^.^.",
+    ]
+
+    result = count_total_paths(input)
+    assert result == 4
+
+def test_sample_2_first_4():
+    input = [
+        ".......S.......",
+        ".......^.......",
+        "......^.^......",
+        ".....^.^.^.....",
+    ]
+
+    result = count_total_paths(input)
+    assert result == 8
+
+def test_sample_2_first_5():
+    input = [
+        ".......S.......",
+        ".......^.......",
+        "......^.^......",
+        ".....^.^.^.....",
+        "....^.^...^....",
+    ]
+
+    result = count_total_paths(input)
+    assert result == 13
+
+def test_sample_2_condensed():
+    input = [
+        ".......S.......",
+        ".......^.......",
+        "......^.^......",
+        ".....^.^.^.....",
+        "....^.^...^....",
+        "...^.^...^.^...",
+        "..^...^.....^..",
+        ".^.^.^.^.^...^.",
+    ]
+
+    result = count_total_paths(input)
+    assert result == 40
+
+def test_sample_2():
+    input = [
+        ".......S.......",
+        "...............",
+        ".......^.......",
+        "...............",
+        "......^.^......",
+        "...............",
+        ".....^.^.^.....",
+        "...............",
+        "....^.^...^....",
+        "...............",
+        "...^.^...^.^...",
+        "...............",
+        "..^...^.....^..",
+        "...............",
+        ".^.^.^.^.^...^.",
+        "...............",
+    ]
+
+    result = count_total_paths(input)
+    assert result == 40

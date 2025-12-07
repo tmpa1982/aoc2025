@@ -66,3 +66,40 @@ def count_total_split(rows: list[str]) -> int:
         evaluated_row = sub.row
         result = result + sub.num_split
     return result
+
+def build_tree(rows: list[str]) -> list[str]:
+    result: list[str] = []
+    evaluated_row = rows[0]
+    result.append(evaluated_row)
+    for i in range(0, len(rows) - 1):
+        next_row = rows[i+1]
+        sub = evaluate(evaluated_row, next_row)
+        evaluated_row = sub.row
+        result.append(evaluated_row)
+    return result
+
+def count_total_paths(rows: list[str]) -> int:
+    tree = build_tree(rows)
+    count_tree: list[list[int]] = []
+    for i in range(0, len(tree)):
+        prev_row = count_tree[-1] if count_tree else []
+        count_tree.append(count_row(prev_row, tree[i]))
+    return sum(count_tree[-1])
+
+def count_row(prev_row: list[int], s: str) -> list[int]:
+    result: list[int] = []
+    for i in range(0, len(s)):
+        c = s[i]
+        cell_sum = 1 if c == START else 0
+        if c == BEAM:
+            cell_sum = count_for_beam_cell(prev_row, s, i)
+        result.append(cell_sum)
+    return result
+
+def count_for_beam_cell(prev_row: list[int], row: str, index: int) -> int:
+    result = prev_row[index]
+    if index > 0 and row[index-1] == SPLIT:
+        result += prev_row[index-1]
+    if index < len(row) - 1 and row[index+1] == SPLIT:
+        result += prev_row[index+1]
+    return result
