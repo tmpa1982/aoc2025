@@ -132,9 +132,9 @@ def test_remove_accessible():
 def exec_test_accessible(layout, coordinate):
     board = Board(layout)
     
-    assert board.is_accessible(coordinate) == True
+    assert board.is_accessible(coordinate)
 
 def exec_test_not_accessible(layout, coordinate):
     board = Board(layout)
     
-    assert board.is_accessible(coordinate) == False
+    assert not board.is_accessible(coordinate)

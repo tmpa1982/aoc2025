@@ -4,23 +4,23 @@ from fresh_range import FreshRange, count_fresh, count_spoiled, parse_input, par
 
 def test_in_range():
     range = FreshRange(3, 5)
-    assert range.contains(4) == True
+    assert range.contains(4)
 
 def test_start_in_range():
     range = FreshRange(3, 5)
-    assert range.contains(3) == True
+    assert range.contains(3)
 
 def test_end_in_range():
     range = FreshRange(3, 5)
-    assert range.contains(5) == True
+    assert range.contains(5)
 
 def test_small_out_of_range():
     range = FreshRange(3, 5)
-    assert range.contains(2) == False
+    assert not range.contains(2)
 
 def test_large_out_of_range():
     range = FreshRange(3, 5)
-    assert range.contains(6) == False
+    assert not range.contains(6)
 
 def test_parses_range():
     result = parse_range("3-5")
@@ -110,29 +110,29 @@ def test_overlap_other_start():
     range = FreshRange(3, 5)
     other = FreshRange(4, 6)
 
-    assert range.has_overlap(other) == True
-    assert other.has_overlap(range) == True
+    assert range.has_overlap(other)
+    assert other.has_overlap(range)
 
 def test_overlap_other_end():
     range = FreshRange(3, 5)
     other = FreshRange(2, 4)
 
-    assert range.has_overlap(other) == True
-    assert other.has_overlap(range) == True
+    assert range.has_overlap(other)
+    assert other.has_overlap(range)
 
 def test_overlap_edge():
     range = FreshRange(3, 5)
     other = FreshRange(5, 7)
 
-    assert range.has_overlap(other) == True
-    assert other.has_overlap(range) == True
+    assert range.has_overlap(other)
+    assert other.has_overlap(range)
 
 def test_no_overlap():
     range = FreshRange(3, 5)
     other = FreshRange(6, 7)
 
-    assert range.has_overlap(other) == False
-    assert other.has_overlap(range) == False
+    assert not range.has_overlap(other)
+    assert not other.has_overlap(range)
 
 def test_merge_right():
     range = FreshRange(3, 5)
