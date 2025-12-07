@@ -18,9 +18,12 @@ class Rotation:
     @staticmethod
     def __parse_direction(s: str):
         match s:            
-            case "L": return Direction.LEFT
-            case "R": return Direction.RIGHT
-            case _: raise ValueError(f"Invalid direction: {s}")
+            case "L":
+                return Direction.LEFT
+            case "R":
+                return Direction.RIGHT
+            case _:
+                raise ValueError(f"Invalid direction: {s}")
     
     @staticmethod
     def __parse_size(s: str):
