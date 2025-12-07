@@ -23,6 +23,6 @@ def parse_number_row(s: str):
 
 def get_numbers(parsed: list[list[int]], index):
     result = []
-    for l in parsed:
-        result.append(l[index])
+    for line in parsed:
+        result.append(line[index])
     return result
