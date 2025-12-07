@@ -23,7 +23,6 @@ def solve(input: list[str]):
 
 def find_next_index(parsed_numbers: list[list[int | None]], index: int):
     result = index + 1
-    is_complete = False
     while True:
         if is_empty_at_column_index(parsed_numbers, result):
             return result
