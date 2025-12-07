@@ -43,8 +43,8 @@ def get_numbers(parsed: list[list[int]], start, end):
     result = []
     for i in range(start, end):
         num = []
-        for l in parsed:
-            if l[i]:
-                num.append(str(l[i]))
+        for line in parsed:
+            if line[i]:
+                num.append(str(line[i]))
         result.append(int("".join(num)))
     return result
