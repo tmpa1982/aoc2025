@@ -26,5 +26,5 @@ class Rotation:
     def __parse_size(s: str):
         try:
             return int(s)
-        except:
+        except (ValueError):
             raise ValueError(f"Invalid size: {s}")
