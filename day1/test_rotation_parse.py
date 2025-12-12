@@ -1,7 +1,7 @@
 import pytest
 
-from direction import Direction
-from rotation import Rotation
+from day1.direction import Direction
+from day1.rotation import Rotation
 
 def test_parse_left():
     result = Rotation.parse("L7")

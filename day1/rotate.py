@@ -1,5 +1,5 @@
-from rotation import Rotation
-from direction import Direction
+from day1.rotation import Rotation
+from day1.direction import Direction
 
 def rotate(position: int, rotation: Rotation):
     return __calculate(position, rotation.size, rotation.direction) % 100

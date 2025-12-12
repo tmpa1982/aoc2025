@@ -1,6 +1,6 @@
-from direction import Direction
-from rotate import rotate
-from rotation import Rotation
+from day1.direction import Direction
+from day1.rotate import rotate
+from day1.rotation import Rotation
 
 def rotate_series_with_detail(steps: list[str]):
     position = 50

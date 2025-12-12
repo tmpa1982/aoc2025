@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from direction import Direction
+from day1.direction import Direction
 
 @dataclass
 class Rotation:

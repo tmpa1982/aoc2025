@@ -1,4 +1,4 @@
-from solution import count_zeros, rotate_series, solve
+from day1.solution import count_zeros, rotate_series, solve
 
 def test_empty_steps_returns_initial_state():
     result = rotate_series([])

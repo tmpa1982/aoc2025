@@ -1,4 +1,4 @@
-from solution import solve2
+from day1.solution import solve2
 
 def main():
     with open("day1/input.txt", 'r') as file:

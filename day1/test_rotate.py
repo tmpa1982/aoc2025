@@ -1,6 +1,6 @@
-from direction import Direction
-from rotate import rotate
-from rotation import Rotation
+from day1.direction import Direction
+from day1.rotate import rotate
+from day1.rotation import Rotation
 
 def test_rotate_right_single():
     result = rotate_right(0, 1)
