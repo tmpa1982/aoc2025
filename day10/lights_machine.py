@@ -1,9 +1,10 @@
 from day10.button import Button
+from day10.joltage import Joltage
 from day10.lights_state import LightsState
 
 
 class LightsMachine:
-    def __init__(self, desired_state: LightsState, buttons: list[Button], joltage: list[int]):
+    def __init__(self, desired_state: LightsState, buttons: list[Button], joltage: Joltage):
         self.desired_state = desired_state
         self.buttons = buttons
         self.joltage = joltage
@@ -13,7 +14,7 @@ class LightsMachine:
         parts = s.split(" ")
         desired_state = LightsMachine.parse_desired_state(parts[0])
         buttons = LightsMachine.parse_buttons(parts[1:-1])
-        joltage = [int(x) for x in parts[-1].strip("{}").split(",")]
+        joltage = Joltage.parse(parts[-1])
         return LightsMachine(desired_state, buttons, joltage)
 
     @staticmethod
@@ -23,6 +24,15 @@ class LightsMachine:
     @staticmethod
     def parse_buttons(parts: list[str]) -> list[Button]:
         return [Button.parse(part) for part in parts]
+
+    def button_matrix(self) -> list[list[int]]:
+        matrix: list[list[int]] = []
+        for button in self.buttons:
+            row = [0] * len(self.desired_state.lights)
+            for pos in button.positions:
+                row[pos] = 1
+            matrix.append(row)
+        return matrix
 
     def find_shortest_path(self) -> list[Button]:
         visited_states: set[LightsState] = set()
