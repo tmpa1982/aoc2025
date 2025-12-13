@@ -9,9 +9,9 @@ class LightsMachine:
 
     @staticmethod
     def parse(s: str) -> LightsMachine:
-        parts = s.split(" ")[:-1]
+        parts = s.split(" ")
         desired_state = LightsMachine.parse_desired_state(parts[0])
-        buttons = LightsMachine.parse_buttons(parts[1:])
+        buttons = LightsMachine.parse_buttons(parts[1:-1])
         return LightsMachine(desired_state, buttons)
 
     @staticmethod
