@@ -15,13 +15,13 @@ class Graph:
         graph = Graph(nodes)
         return graph
 
-    def find_all_paths(self) -> list[list[str]]:
+    def find_all_paths(self, from_node: str = "you", to_node: str = "out") -> list[list[str]]:
         results: list[list[str]] = []
-        start = self.nodes["you"]
+        start = self.nodes[from_node]
         stack: list[tuple[Node, list[str]]] = [(start, [start.name])]
         while stack:
             current_node, path = stack.pop()
-            if current_node.name == "out":
+            if current_node.name == to_node:
                 results.append(path)
                 continue
             for next_node_name in current_node.next_nodes:
