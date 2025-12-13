@@ -34,7 +34,7 @@ shape5 = [
     [True, True, True],
 ]
 
-shapes = [
+shapes: list[list[list[bool]]] = [
     shape0,
     shape1,
     shape2,
