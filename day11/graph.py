@@ -14,6 +14,10 @@ class Graph:
         graph = Graph(nodes)
         return graph
 
+    def stats(self) -> str:
+        num_edges = sum(len(node.next_nodes) for node in self.nodes.values())
+        return f"Graph with {len(self.nodes)} nodes, {num_edges} edges"
+
     def find_all_paths(self, from_node: str = "you", to_node: str = "out") -> list[list[str]]:
         results: list[list[str]] = []
         start = self.nodes[from_node]
