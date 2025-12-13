@@ -1,5 +1,6 @@
 from day8.circuit_element import CircuitElement
 from day8.coordinate import Coordinate
+from day8.distance import calculate_distances
 
 
 class Circuit:
@@ -18,12 +19,7 @@ class Circuit:
 
     def sort_by_distance(self):
         coordinates = list(self.coordinate_map.keys())
-        for i in range(0, len(coordinates)-1):
-            for j in range(i+1, len(coordinates)):
-                c1 = coordinates[i]
-                c2 = coordinates[j]
-                d = c1.distance(c2)
-                self.distances[(c1, c2)] = d
+        self.distances = calculate_distances(coordinates)
         self.sorted_distances = sorted(self.distances.items(), key=lambda x: x[1])
 
     def get_circuit_id(self, coordinate: Coordinate) -> int | None:
