@@ -1,4 +1,4 @@
-from coordinate_2d import Coordinate2D
+from day9.coordinate_2d import Coordinate2D
 
 
 class Board:

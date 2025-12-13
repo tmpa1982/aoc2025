@@ -1,4 +1,4 @@
-from solution9 import solve2
+from day9.solution9 import solve2
 
 
 def main():

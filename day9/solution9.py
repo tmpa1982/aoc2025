@@ -1,6 +1,6 @@
 from typing import Callable
-from coordinate_2d import Coordinate2D
-from board import Board
+from day9.coordinate_2d import Coordinate2D
+from day9.board import Board
 
 
 def solve(coordinates: list[str]):
