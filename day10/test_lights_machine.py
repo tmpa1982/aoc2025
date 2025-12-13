@@ -6,7 +6,7 @@ from day10.lights_state import LightsState
 def test_path_trivial():
     desired_state = LightsState([False, True, True, True, False])
     button = Button([1, 2, 3])
-    machine = LightsMachine(desired_state, [button])
+    machine = LightsMachine(desired_state, [button], [])
     result = machine.find_shortest_path()
     assert result == [button]
 
@@ -14,7 +14,7 @@ def test_path_one_step_other_button():
     desired_state = LightsState([False, True, True, True, False])
     button1 = Button([0, 1, 2])
     button2 = Button([1, 2, 3])
-    machine = LightsMachine(desired_state, [button1, button2])
+    machine = LightsMachine(desired_state, [button1, button2], [])
     result = machine.find_shortest_path()
     assert result == [button2]
 

@@ -3,16 +3,18 @@ from day10.lights_state import LightsState
 
 
 class LightsMachine:
-    def __init__(self, desired_state: LightsState, buttons: list[Button]):
+    def __init__(self, desired_state: LightsState, buttons: list[Button], joltage: list[int]):
         self.desired_state = desired_state
         self.buttons = buttons
+        self.joltage = joltage
 
     @staticmethod
     def parse(s: str) -> LightsMachine:
         parts = s.split(" ")
         desired_state = LightsMachine.parse_desired_state(parts[0])
         buttons = LightsMachine.parse_buttons(parts[1:-1])
-        return LightsMachine(desired_state, buttons)
+        joltage = [int(x) for x in parts[-1].strip("{}").split(",")]
+        return LightsMachine(desired_state, buttons, joltage)
 
     @staticmethod
     def parse_desired_state(s: str) -> LightsState:
