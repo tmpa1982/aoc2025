@@ -33,3 +33,12 @@ shape5 = [
     [True, False, False],
     [True, True, True],
 ]
+
+shapes = [
+    shape0,
+    shape1,
+    shape2,
+    shape3,
+    shape4,
+    shape5,
+]
