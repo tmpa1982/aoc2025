@@ -1,4 +1,4 @@
-from typing import Iterator
+from typing import cast, Iterator
 import networkx as nx
 
 from networkx import Graph
@@ -14,7 +14,10 @@ def solve2(input: list[str]) -> int:
     G.add_edges_from([
         ((c1, c2, {"weight": d})) for ((c1, c2), d) in distances.items()
     ])
-    spanning_edges: Iterator[tuple[Coordinate, Coordinate, float]] = nx.minimum_spanning_edges(G)
+    spanning_edges = cast(
+        Iterator[tuple[Coordinate, Coordinate, dict[str, float]]],
+        nx.minimum_spanning_edges(G), # type: ignore
+    )
     max_edge = None
     for edge in spanning_edges:
         if not max_edge or edge[2]["weight"] > max_edge[2]["weight"]:
