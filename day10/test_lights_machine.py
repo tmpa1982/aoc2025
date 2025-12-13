@@ -1,6 +1,6 @@
-from button import Button
-from lights_machine import LightsMachine
-from lights_state import LightsState
+from day10.button import Button
+from day10.lights_machine import LightsMachine
+from day10.lights_state import LightsState
 
 
 def test_path_trivial():

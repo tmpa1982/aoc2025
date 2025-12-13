@@ -1,4 +1,4 @@
-from lights_machine import LightsMachine
+from day10.lights_machine import LightsMachine
 
 
 def solve(input: list[str]) -> int:

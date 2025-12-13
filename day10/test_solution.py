@@ -1,4 +1,4 @@
-from solution import solve
+from day10.solution import solve
 
 
 def test_solve_sample():
