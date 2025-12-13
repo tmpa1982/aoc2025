@@ -1,5 +1,5 @@
-from circuit import Circuit, solve
-from coordinate import Coordinate
+from day8.circuit import Circuit, solve
+from day8.coordinate import Coordinate
 
 def test_find_shortest_edge_trivial():
     c1 = Coordinate(0, 0, 0)

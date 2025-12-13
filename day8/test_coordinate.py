@@ -1,4 +1,4 @@
-from coordinate import Coordinate
+from day8.coordinate import Coordinate
 
 
 def test_distance_int():

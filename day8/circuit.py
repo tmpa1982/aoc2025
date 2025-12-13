@@ -1,5 +1,5 @@
-from circuit_element import CircuitElement
-from coordinate import Coordinate
+from day8.circuit_element import CircuitElement
+from day8.coordinate import Coordinate
 
 
 class Circuit:

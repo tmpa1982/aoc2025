@@ -1,4 +1,4 @@
-from coordinate import Coordinate
+from day8.coordinate import Coordinate
 
 
 class CircuitElement:

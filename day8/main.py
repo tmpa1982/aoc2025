@@ -1,4 +1,4 @@
-from circuit import solve
+from day8.circuit import solve
 
 
 def main():
