@@ -5,12 +5,10 @@ def test_sample():
     with open("day11/input_sample.txt") as f:
         input = [line.strip() for line in f.readlines()]
     graph = Graph.create(input)
-    assert len(graph.nodes) == 11
+    assert len(graph.nodes) == 10
     assert "you" in graph.nodes
-    assert "out" in graph.nodes
     assert graph.nodes["ccc"].next_nodes == ["ddd", "eee", "fff"]
     assert graph.nodes["iii"].next_nodes == ["out"]
-    assert graph.nodes["out"].next_nodes == []
     
     paths = graph.find_all_paths()
     assert len(paths) == 5

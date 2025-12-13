@@ -4,7 +4,6 @@ from day11.node import Node
 class Graph:
     def __init__(self, nodes: dict[str, Node]) -> None:
         self.nodes = nodes
-        self.nodes["out"] = Node("out", [])
 
     @staticmethod
     def create(input: list[str]) -> Graph:
@@ -26,6 +25,9 @@ class Graph:
                 continue
             for next_node_name in current_node.next_nodes:
                 if next_node_name not in path:
+                    if next_node_name == to_node:
+                        results.append(path + [next_node_name])
+                        continue
                     next_node = self.nodes.get(next_node_name)
                     if next_node:
                         stack.append((next_node, path + [next_node.name]))
