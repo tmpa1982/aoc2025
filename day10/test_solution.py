@@ -1,7 +1,7 @@
 import numpy as np
 
 from day10.lights_machine import LightsMachine
-from day10.solution import solve, find_minimum_button_pushes
+from day10.solution import solve, find_minimum_button_pushes, verify_button_pushes
 
 
 def test_solve_sample():
@@ -19,7 +19,13 @@ def test_find_minimum_button_pushes():
     buttons = np.array(machine.button_matrix())
     desired = np.array(machine.joltage.joltages)
     result = find_minimum_button_pushes(buttons, desired)
-    joltage = machine.joltage.get_initial_state()
-    for index, times in enumerate(result):
-        joltage = joltage.switch(machine.buttons[index], times)
+    joltage = verify_button_pushes(machine, result)
+    assert joltage == machine.joltage
+
+def test_find_minimum_button_pushes_2():
+    machine = LightsMachine.parse("[####...] (0,1,2,3,4,6) (1,2,4) (1,3,5) (0,2,5) (4,6) (0,1,4,5,6) (3,5,6) (3) (0,1,2,5) {32,56,31,49,53,50,48}")
+    buttons = np.array(machine.button_matrix())
+    desired = np.array(machine.joltage.joltages)
+    result = find_minimum_button_pushes(buttons, desired)
+    joltage = verify_button_pushes(machine, result)
     assert joltage == machine.joltage
