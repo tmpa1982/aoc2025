@@ -1,35 +1,26 @@
-from typing import Callable
 from day9.coordinate_2d import Coordinate2D
 
 
-def solve(coordinates: list[str]):
+def solve(coordinates: list[str]) -> int:
     parsed = [Coordinate2D.create(c) for c in coordinates]
-    return solve_condition(parsed)
-
-def solve_condition(coordinates: list[Coordinate2D], condition: Callable[[Coordinate2D, Coordinate2D], bool] = lambda x, y: True):
-    c1 = coordinates[0]
-    c2 = coordinates[1]
-    max_area = area(c1, c2)
-    for i in range(0, len(coordinates)-1):
-        for j in range(i+1, len(coordinates)):
-            a = area(coordinates[i], coordinates[j])
-            if a > max_area and condition(coordinates[i], coordinates[j]):
-                c1 = coordinates[i]
-                c2 = coordinates[j]
-                max_area = a
-    return max_area
+    sorted_areas = sort_areas(parsed)
+    return sorted_areas[0][2]
 
 def area(c1: Coordinate2D, c2: Coordinate2D) -> int:
     return (abs(c1.x - c2.x) + 1) * (abs(c1.y - c2.y) + 1)
 
 def solve2(coordinates: list[str]) -> int:
     parsed = [Coordinate2D.create(c) for c in coordinates]
-    areas = calculate_areas(parsed)
-    sorted_areas = sorted(areas, key=lambda t: t[2], reverse=True)
+    sorted_areas = sort_areas(parsed)
     for (c1, c2, a) in sorted_areas:
         if not check_line_inside(c1, c2, parsed):
             return a
     return NotImplemented
+
+def sort_areas(parsed: list[Coordinate2D]) -> list[tuple[Coordinate2D, Coordinate2D, int]]:
+    areas = calculate_areas(parsed)
+    sorted_areas = sorted(areas, key=lambda t: t[2], reverse=True)
+    return sorted_areas
 
 def calculate_areas(coordinates: list[Coordinate2D]) -> list[tuple[Coordinate2D, Coordinate2D, int]]:
     areas: list[tuple[Coordinate2D, Coordinate2D, int]] = []
